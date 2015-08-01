@@ -38,27 +38,40 @@ final class RunnerResults {
     }
 
     public function getPrecision() {
+        if ($this->truePositives + $this->falsePositives === 0)
+            throw new InsufficientTestSetException();
+        
         return $this->truePositives / ((float) $this->truePositives + $this->falsePositives);
     }
 
     public function getRecall() {
+        if ($this->truePositives + $this->falseNegatives === 0)
+            throw new InsufficientTestSetException();
+
         return $this->truePositives / ((float) $this->truePositives + $this->falseNegatives);
     }
 
     public function getSpecificity() {
+        if ($this->trueNegatives + $this->falsePositives === 0)
+            throw new InsufficientTestSetException();
+        
         return $this->trueNegatives / ((float) $this->trueNegatives + $this->falsePositives);
     }
 
     public function getAccuracy() {
+        if ($this->truePositives + $this->trueNegatives +
+            $this->falsePositives + $this->falseNegatives === 0)
+                throw new InsufficientTestSetException();
+        
         return ($this->truePositives + $this->trueNegatives) / ((float) + $this->truePositives + $this->trueNegatives + $this->falsePositives + $this->falseNegatives);
     }
 
     public function getPredictedLabels() {
-        return $this->testSet;
+        return $this->predictedLabels;
     }
 
     public function getActualLabels() {
-        return $this->testSet;
+        return $this->actualLabels;
     }
 
     public function getTestSet() {
