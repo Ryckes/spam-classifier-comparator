@@ -1,5 +1,7 @@
 <?php
-namespace Ryckes\SpamClassifierComparator;
+namespace Ryckes\SpamClassifierComparator\Partitioners;
+use Ryckes\SpamClassifierComparator\DataSet;
+use Ryckes\SpamClassifierComparator\Partition;
 
 class RandomPartitioner {
 
